@@ -1,0 +1,12 @@
+apiVersion: v2
+name: task-tracker-app
+description: Helm chart for deploying the Task Tracker application
+type: application
+
+version: 0.1.0
+appVersion: "1.0.0"
+
+dependencies:
+- name: mongodb
+  version: 15.3.0
+  repository: https://charts.bitnami.com/bitnami

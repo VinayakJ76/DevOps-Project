@@ -1,0 +1,59 @@
+replicaCount: 2
+
+image:
+  repository: 644435390668.dkr.ecr.ap-south-1.amazonaws.com/roey-portfolio
+  tag: "latest"
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 5000
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+env:
+  MONGO_URI: mongodb://root:rootpassword@task-tracker-app-mongodb:27017/tasks
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations: {}
+
+  hosts:
+  - host: task-tracker.local
+    paths:
+    - path: /
+      pathType: Prefix
+
+  tls: []
+
+############################################
+# MongoDB Subchart Configuration
+############################################
+
+mongodb:
+  architecture: standalone
+
+  auth:
+    enabled: true
+    rootUser: root
+    rootPassword: rootpassword
+    database: tasks
+
+  persistence:
+    enabled: true
+    size: 5Gi
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi

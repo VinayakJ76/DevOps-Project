@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: {{ include "task-tracker-app.fullname" . }}
+  labels:
+    {{- include "task-tracker-app.labels" . | nindent 4 }}
+
+spec:
+  replicas: {{ .Values.replicaCount }}
+
+  selector:
+    matchLabels:
+      app: {{ include "task-tracker-app.name" . }}
+
+  template:
+    metadata:
+      labels:
+        app: {{ include "task-tracker-app.name" . }}
+
+    spec:
+      containers:
+        - name: task-tracker
+
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+
+          ports:
+            - containerPort: {{ .Values.service.port }}
+
+          env:
+            - name: MONGO_URI
+              value: "{{ .Values.env.MONGO_URI }}"
+
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}

@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+
+metadata:
+  name: task-tracker-app
+  namespace: argocd
+
+spec:
+  project: default
+
+  source:
+    repoURL: "https://github.com/VinayakJ76/DevOps-Project.git"
+    targetRevision: HEAD
+    path: gitops/task-tracker-app
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: task-tracker
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
