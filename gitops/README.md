@@ -31,7 +31,7 @@ This repository contains the GitOps configuration for deploying and managing the
 │   │   ├── elastic-values.yaml            # Values for Elasticsearch
 │   │   ├── fluent-values.yaml             # Values for Fluent-bit
 │   │   ├── prometheus-values.yaml         # Values for Prometheus
-├── weather-app                            # Directory for the weather application Helm chart
+├── task-tracker-app                       # Directory for the task-tracker application Helm chart
 │   ├── charts                             # Directory for imported Helm charts
 │   │   └── mongodb-15.3.0.tgz             # MongoDB Helm chart package
 │   ├── Chart.yaml                         # Helm chart metadata
@@ -43,8 +43,8 @@ This repository contains the GitOps configuration for deploying and managing the
 │   │   ├── deployment.yaml                # Template for application deployment
 │   │   ├── ingress.yaml                   # Template for ingress resource
 │   │   └── service.yaml                   # Template for service resource
-│   └── values.yaml                        # Values file for the weather application Helm chart
-├── weather-app.yaml                       # Main configuration for the weather application
+│   └── values.yaml                        # Values file for the task-tracker application Helm chart
+├── task-tracker-app.yaml                       # Main configuration for the task-tracker application
 ├── infra-apps.yaml                        # Main configuration for infrastructure applications
 ├── info.md                                # Notes and useful commands
 ```
